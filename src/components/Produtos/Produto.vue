@@ -31,7 +31,7 @@
         </div>
 
         <v-card-actions class="justify-center my-2">
-            <v-btn class="btn-bluegreen px-4">Comprar</v-btn>
+            <v-btn class="btn-blue px-4">Comprar</v-btn>
         </v-card-actions>
     </v-card>
 </template>
@@ -71,8 +71,9 @@ export default {
     .text {
         padding: 0 15px;
     }
-    .btn-bluegreen {
-        background: #05ffd0 !important;
+    .btn-blue {
+        background: #008ad8 !important;
+        color: white !important;
         border-radius: 15px !important;
         font-weight: bold !important;
         text-transform: none !important;

@@ -12,16 +12,21 @@
                 background-color: #fff;" class="mx-2 my-3">
                 
                 <div>
-                    <h3>Total do pedido:</h3> 
+                    <h3>Total do pedido:</h3>
                     <hr>
                 </div>
                 <section style="display: flex; flex-direction: column;">
                     <strike style="font-size: 12px;">{{ totalSem | formataTotal }}</strike>
-                    <strong style="font-size: 16px;">{{ totalCom | formataTotal }}</strong>
+                    <strike v-if="totalCom > 1000" style="font-size: 12px;">-10%</strike>
+                    <strong style="font-size: 16px;">{{ totalCom >= 1000 ? Math.round(totalCom-totalCom/10) : totalCom
+                        | formataTotal }}</strong>
                 </section>
                 
                 <v-btn style="border-radius: 15px; color: white; background: #008ad8;" 
                     class="botao text-capitalize" @click="remove">Limpar Carrinho</v-btn>
+                
+                <v-btn style="border-radius: 15px; color: white; background: #008ad8;" 
+                    class="botao text-capitalize" @click="removeone">Limpar Carrinho</v-btn>
 
             </v-card> 
         </v-layout>
@@ -54,8 +59,8 @@ export default {
     },
     filters: {
         formataTotal(valor){
-			return `R$ ${valor.toString().substr(0, 2) + '.' + valor.toString().substr(2)},00`
-		}
+			return `R$ ${valor},00`
+		},
     },
     methods: {
         totalComDesconto(){
@@ -72,7 +77,14 @@ export default {
             this.totalSemDesconto()
         },
         remove(){
-            this.produtosCarrinho = []
+            // this.produtosCarrinho = []
+            this.produtosCarrinho.pop()
+            this.totalComDesconto()
+            this.totalSemDesconto()
+        },
+        removeone(){
+            // this.produtosCarrinho = []
+            this.produtosCarrinho.push(this.produtosCarrinho[0])
             this.totalComDesconto()
             this.totalSemDesconto()
         }
@@ -98,7 +110,8 @@ export default {
         border-radius: 10px;
     }
     .btn-bluegreen {
-        background: #05ffd0 !important;
+        background: #008ad8 !important;
+        color: white !important;
         border-radius: 15px !important;
         font-weight: bold !important;
         text-transform: none !important;
