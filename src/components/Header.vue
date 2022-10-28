@@ -129,4 +129,7 @@ export default {
         flex-direction: column;
         max-height: 90vh;
     }
+    @media(max-width: 600px) {
+        
+    }
 </style>
