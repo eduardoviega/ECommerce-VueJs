@@ -9,7 +9,7 @@
 
             <v-card style="display: flex; flex-direction: column; align-self: flex-end; flex: 4; 
                 min-height: 190px; padding: 20px;  justify-content: space-between; border-radius: 15px; 
-                background-color: #fff;" class="mx-2 my-3">
+                background-color: #fff;" class="mx-2 my-3"> 
                 
                 <div class="infos">
                     <h3>Total do pedido:</h3>
@@ -18,26 +18,21 @@
                 <section style="display: flex; flex-direction: column;">
                     <div class="infos">
                         <span>Valor sem descontos:</span>
-                        <span style="font-size: 12px;">{{ totalSem | formataTotal }}</span>
+                        <span style="font-size: 12px;">{{ valorSemDescontos | formataTotal }}</span>
                     </div>
-                    <div class="infos" v-if="totalCom > 1000">
+                    <div class="infos" v-if="produtosCarrinho.map(p => p.price).reduce((total, atual) => total + atual, 0) >= 1000">
                         <span>10% de desconto:</span>
-                        <span style="font-size: 12px;">- {{Math.round(totalCom/10) | formataTotal }}</span>
+                        <span style="font-size: 12px;">- {{ dezPorCento | formataTotal }}</span>
                     </div>
                     <hr>
                     <div class="infos">
                         <strong style="font-size: 16px;">Valor final:</strong>
-                        <strong style="font-size: 16px;">{{ totalCom >= 1000 ? Math.round(totalCom-totalCom/10) : totalCom
-                        | formataTotal }}</strong>
+                        <strong style="font-size: 16px;">{{ valorFinal >= 1000 ? valorFinal - dezPorCento : valorFinal | formataTotal }}</strong>
                     </div>
                 </section>
                 
                 <v-btn style="border-radius: 15px; color: white; background: #008ad8;" 
-                    class="botao text-capitalize" @click="remove">Limpar Carrinho</v-btn>
-                
-                <v-btn style="border-radius: 15px; color: white; background: #008ad8;" 
-                    class="botao text-capitalize" @click="removeone">Limpar Carrinho</v-btn>
-
+                    class="botao text-capitalize" @click="limpar">Limpar Carrinho</v-btn>
             </v-card> 
         </v-layout>
         
@@ -55,54 +50,22 @@
 
 <script>
 import ItemCarrinho from './ItemCarrinho.vue'
-const axios = require('axios')
 export default {
-    data() {
-        return {
-            produtosCarrinho: [],
-            totalCom: 0,
-            totalSem: 0,
-        }
+    computed: {
+        produtosCarrinho() { return this.$store.getters.produtosCarrinho },
+        valorSemDescontos() { return this.$store.getters.valorSemDescontos },
+        dezPorCento() { return this.$store.getters.dezPorCento },
+        valorFinal() { return this.$store.getters.valorFinal },
     },
-    mounted() {
-        this.getUsers()
+    methods: {
+        limpar(){
+            this.$store.commit('limparCarrinho')
+        },
     },
     filters: {
         formataTotal(valor){
             return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(valor)
-		},
-    },
-    methods: {
-        totalComDesconto(){
-            this.totalCom = this.produtosCarrinho.map(p => p.price).reduce((total, atual) => total + atual, 0)
         },
-        totalSemDesconto(){
-            this.totalSem =  this.produtosCarrinho.map(p => Math.round(p.price / p.discountPercentage + p.price))
-                .reduce((total, atual) => total + atual, 0)
-        },
-        async getUsers() {
-            const response = await axios.get('https://dummyjson.com/products/')
-            this.produtosCarrinho = response.data.products
-            this.totalComDesconto()
-            this.totalSemDesconto()
-        },
-        remove(){
-            // this.produtosCarrinho = []
-            this.produtosCarrinho.pop()
-            this.totalComDesconto()
-            this.totalSemDesconto()
-        },
-        removeone(){
-            // this.produtosCarrinho = []
-            this.produtosCarrinho.push(this.produtosCarrinho[0])
-            this.totalComDesconto()
-            this.totalSemDesconto()
-        }
-    },
-    watch: {
-        produtosCarrinho() {
-            this.totalCom
-        },        
     },
     components: { ItemCarrinho },
 }

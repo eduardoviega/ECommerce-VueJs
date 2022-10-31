@@ -1,7 +1,6 @@
 <template>
     <v-card class="mx-2 my-3 geral" width="340px" max-width="340px" style="border-radius: 15px; display: flex; 
-        flex-direction: column; justify-content: space-between;"
-            v-show="mostrar">
+        flex-direction: column; justify-content: space-between;">
 
         <v-carousel :cycle="false" hide-delimiters v-model="model"
             v-if="produto.images.length != 1" 
@@ -31,7 +30,7 @@
         </div>
 
         <v-card-actions class="justify-center my-2">
-            <v-btn class="btn-blue px-4">Comprar</v-btn>
+            <v-btn class="btn-blue px-4" @click="comprar">Comprar</v-btn>
         </v-card-actions>
     </v-card>
 </template>
@@ -42,7 +41,6 @@ export default {
     data () {
       return {
         model: 1,
-        mostrar: false,
         withoutDiscount: 0
       }
     },
@@ -54,9 +52,11 @@ export default {
     mounted(){
         this.model = 0
         this.withoutDiscount = Math.round(this.produto.price / this.produto.discountPercentage + this.produto.price)
-        setTimeout(() => {
-            this.mostrar = true
-        },1000)
+    },
+    methods: {
+        comprar(){
+            this.$store.commit('adicionarCarrinho', this.produto)
+        }
     }
 }
 </script>

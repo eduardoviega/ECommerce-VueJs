@@ -24,8 +24,8 @@
             </div>
 
             <v-card-actions>
-                <v-btn class="btn-blue">Remover</v-btn>
-            </v-card-actions>
+                <v-btn class="btn-blue" @click="remover">Remover</v-btn>
+            </v-card-actions> 
         </div>
     </v-card>
 </template>
@@ -51,6 +51,9 @@ export default {
         }
     },
     methods: {
+        remover(){
+            this.$store.commit('removerDoCarrinho', this.produto.id)
+        },
         increment() {
             this.number = parseInt(this.number,10) + 1
         },
