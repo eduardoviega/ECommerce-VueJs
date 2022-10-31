@@ -40,7 +40,7 @@ export default {
     },
     filters: {
         formataPreco(valor){
-			return `R$ ${valor},00`
+            return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(valor)
 		}
     },
     watch: {
@@ -62,7 +62,7 @@ export default {
         }
     },
     mounted(){
-        this.withoutDiscount = Math.round(this.produto.price / this.produto.discountPercentage + this.produto.price)
+        this.withoutDiscount = this.produto.price / this.produto.discountPercentage + this.produto.price
     }
 }
 </script>
