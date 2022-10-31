@@ -9,7 +9,7 @@
 
             <v-card style="display: flex; flex-direction: column; align-self: flex-end; flex: 4; 
                 min-height: 190px; padding: 20px;  justify-content: space-between; border-radius: 15px; 
-                background-color: #fff;" class="mx-2 my-3"> 
+                background-color: #fff;" class="mx-2 my-3">
                 
                 <div class="infos">
                     <h3>Total do pedido:</h3>
@@ -20,7 +20,7 @@
                         <span>Valor sem descontos:</span>
                         <span style="font-size: 12px;">{{ valorSemDescontos | formataTotal }}</span>
                     </div>
-                    <div class="infos" v-if="produtosCarrinho.map(p => p.price).reduce((total, atual) => total + atual, 0) >= 1000">
+                    <div class="infos" v-if="valorFinal >= 1000">
                         <span>10% de desconto:</span>
                         <span style="font-size: 12px;">- {{ dezPorCento | formataTotal }}</span>
                     </div>
@@ -66,6 +66,11 @@ export default {
         formataTotal(valor){
             return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(valor)
         },
+    },
+    watch: {
+        produtosCarrinho(){
+            this.produtosCarrinho = this.produtosCarrinho
+        }
     },
     components: { ItemCarrinho },
 }

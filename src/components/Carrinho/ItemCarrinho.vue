@@ -17,7 +17,7 @@
                 <v-text-field type="number" min="1" max="10" label="Quantidade"
                     v-model.number="number" @keydown.prevent
                     hide-details
-                    @click:append-outer="increment"  @click:prepend="decrement"
+                    @click:append-outer="increment" @click:prepend="decrement"
                     style="width: auto;"
                 ></v-text-field>
        
@@ -34,7 +34,7 @@ export default {
     props: ['produto'],
     data() {
         return {
-            number: 1,
+            number: this.produto.amount,
             withoutDiscount: 0
         }
     },
@@ -45,6 +45,7 @@ export default {
     },
     watch: {
         number(){
+            this.produto.amount = this.number;
             if(this.number > 10) {
                 this.number = 10
             }

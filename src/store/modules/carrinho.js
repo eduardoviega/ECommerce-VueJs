@@ -7,19 +7,25 @@ export default {
             return state.produtosCarrinho
         },
         valorSemDescontos(state){
-            return state.produtosCarrinho.map(p => p.price / p.discountPercentage + p.price)
+            return state.produtosCarrinho.map(p => (p.price / p.discountPercentage + p.price) * p.amount)
                 .reduce((total, atual) => total + atual, 0)
         },
         dezPorCento(state){
-            return state.produtosCarrinho.map(p => p.price).reduce((total, atual) => total + atual, 0) / 10
+            return state.produtosCarrinho.map(p => p.price * p.amount).reduce((total, atual) => total + atual, 0) / 10 
         },
         valorFinal(state){
-            return state.produtosCarrinho.map(p => p.price).reduce((total, atual) => total + atual, 0)
+            return state.produtosCarrinho.map(p => p.price * p.amount).reduce((total, atual) => total + atual, 0) 
         },
     },
     mutations: {
         adicionarCarrinho(state, payload){
-            state.produtosCarrinho.push(payload)
+            if(state.produtosCarrinho.find(item => item.id == payload.id)){
+                if(state.produtosCarrinho.filter(item => item.id == payload.id)[0].amount < 10){
+                    state.produtosCarrinho.filter(item => item.id == payload.id)[0].amount += 1
+                }
+            } else {
+                state.produtosCarrinho.push(payload)
+            }
         },
         removerDoCarrinho(state, payload){
             const index = state.produtosCarrinho.indexOf(state.produtosCarrinho.filter(item => item.id == payload)[0])
