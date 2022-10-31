@@ -14,7 +14,7 @@
             </div>
 
             <div>
-                <v-text-field type="number" min="1" max="10" label="Quantidade:"
+                <v-text-field label="Quantidade:"
                     v-model="produto.amount" @keydown.prevent
                     hide-details
                     append-outer-icon="add" prepend-icon="remove" 

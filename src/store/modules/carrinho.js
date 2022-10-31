@@ -31,6 +31,7 @@ export default {
             }
         },
         removerDoCarrinho(state, payload){
+            state.produtosCarrinho.filter(item => item.id == payload)[0].amount = 1
             const index = state.produtosCarrinho.indexOf(state.produtosCarrinho.filter(item => item.id == payload)[0])
             state.produtosCarrinho.splice(index, 1);
         },
