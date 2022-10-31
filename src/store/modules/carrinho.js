@@ -16,6 +16,9 @@ export default {
         valorFinal(state){
             return state.produtosCarrinho.map(p => p.price * p.amount).reduce((total, atual) => total + atual, 0) 
         },
+        qtdProdutos(state){
+            return state.produtosCarrinho.map(p => p.amount).reduce((total, atual) => total + atual, 0) 
+        },
     },
     mutations: {
         adicionarCarrinho(state, payload){

@@ -77,6 +77,9 @@ export default {
 </script>
 
 <style>
+* {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
     .vazio {
         display: flex; 
         flex-direction: column;

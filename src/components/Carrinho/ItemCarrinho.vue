@@ -1,5 +1,5 @@
 <template>
-    <v-card color="#fff" class="mx-2 my-3 px-2 pt-2 d-flex" 
+    <v-card color="#fff" class="mx-2 my-3 px-2 py-2 d-flex" 
         style="border-radius: 15px; height: auto; flex-wrap: wrap;">
         <v-img :src="produto.thumbnail" class="image"></v-img>
         
@@ -14,16 +14,16 @@
             </div>
 
             <div>
-                <v-text-field type="number" min="1" max="10" label="Quantidade"
-                    v-model.number="number" @keydown.prevent
+                <v-text-field type="number" min="1" max="10" label="Quantidade:"
+                    v-model="produto.amount" @keydown.prevent
                     hide-details
+                    append-outer-icon="add" prepend-icon="remove" 
                     @click:append-outer="increment" @click:prepend="decrement"
                     style="width: auto;"
                 ></v-text-field>
-       
             </div>
 
-            <v-card-actions>
+            <v-card-actions class="mt-2">
                 <v-btn class="btn-blue" @click="remover">Remover</v-btn>
             </v-card-actions> 
         </div>
@@ -34,7 +34,6 @@ export default {
     props: ['produto'],
     data() {
         return {
-            number: this.produto.amount,
             withoutDiscount: 0
         }
     },
@@ -43,23 +42,15 @@ export default {
             return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(valor)
 		}
     },
-    watch: {
-        number(){
-            this.produto.amount = this.number;
-            if(this.number > 10) {
-                this.number = 10
-            }
-        }
-    },
     methods: {
         remover(){
             this.$store.commit('removerDoCarrinho', this.produto.id)
         },
         increment() {
-            this.number = parseInt(this.number,10) + 1
+            this.produto.amount = this.produto.amount < 10 ? parseInt(this.produto.amount,10) + 1 : 10
         },
         decrement() {
-            this.number = this.number != 1 ? parseInt(this.number,10) - 1 : 1
+            this.produto.amount = this.produto.amount > 1 ? parseInt(this.produto.amount,10) - 1 : 1
         }
     },
     mounted(){
@@ -69,6 +60,9 @@ export default {
 </script>
 
 <style>
+    * {
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
     .image{
         align-self: flex-start;
         min-width: 25vh; 

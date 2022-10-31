@@ -1,11 +1,9 @@
 <template>
     <v-toolbar app class="toolbar" style="background-color: #008ad8;">
         <div style="display: flex; flex-direction: row; align-items: center;">
-            <v-toolbar-items>
+            <v-toolbar-items class="mr-0">
                 <v-menu offset-x open-on-hover>
-                    <router-link to="/carrinho" slot="activator" style="color: white; display: flex;">
-                        <Menu />    
-                    </router-link>
+                    <Menu slot="activator" style="color: white; display: flex;" />
                     <v-list class="departamentos">
                         <router-link to="/smartphones">
                             <v-list-tile>Celulares</v-list-tile>
@@ -90,7 +88,7 @@
                 </v-menu>
             </v-toolbar-items>
             
-            <v-toolbar-title class="headline text-uppercase mr-4">
+            <v-toolbar-title class="headline text-uppercase ml-3 mr-3">
                 <router-link to="/" style="text-decoration: none; color: white;">
                     <span>Leigado</span>
                     <span class="font-weight-light">Store</span>
@@ -100,8 +98,9 @@
         <v-spacer></v-spacer>
 
         <v-toolbar-items class="headline text-uppercase">
-            <router-link to="/carrinho" style="color: white; display: flex; align-items: center; padding-top: 5px;" >
+            <router-link to="/carrinho" style="color: white; display: flex; align-items: center; padding-top: 5px; text-decoration: none;" >
                 <Cart />
+                <span style="height: 100%; font-size: 16px;">{{ qtdProdutos }}</span>
             </router-link>
         </v-toolbar-items>
     </v-toolbar>
@@ -111,25 +110,37 @@
 import Cart from 'vue-material-design-icons/Cart.vue';
 import Menu from 'vue-material-design-icons/Menu.vue';
 export default {
-    components: { Cart, Menu }
+    components: { Cart, Menu },
+    computed: {
+        qtdProdutos() { return this.$store.getters.qtdProdutos },
+    }
 }
 </script>
 
 <style>
+    * {
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
     .botao {
         color: white !important;
     }
+    .departamentos * {
+        background-color: white !important;
+    }
     .departamentos a {
         text-decoration: none;
+        border-top: 1px solid lightgray !important;
         color: black;
         width: 100%;
     }
-    .departamentos * {
-        background-color: white !important;
+    .departamentos a:first-child {
+        border: none !important;
+
     }
     .departamentos {
         display: flex;
         flex-direction: column;
         max-height: 90vh;
+        padding: 0;
     }
 </style>
