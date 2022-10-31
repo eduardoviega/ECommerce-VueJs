@@ -11,15 +11,25 @@
                 min-height: 190px; padding: 20px;  justify-content: space-between; border-radius: 15px; 
                 background-color: #fff;" class="mx-2 my-3">
                 
-                <div>
+                <div class="infos">
                     <h3>Total do pedido:</h3>
-                    <hr>
                 </div>
+                <hr>
                 <section style="display: flex; flex-direction: column;">
-                    <strike style="font-size: 12px;">{{ totalSem | formataTotal }}</strike>
-                    <strike v-if="totalCom > 1000" style="font-size: 12px;">-10%</strike>
-                    <strong style="font-size: 16px;">{{ totalCom >= 1000 ? Math.round(totalCom-totalCom/10) : totalCom
+                    <div class="infos">
+                        <span>Valor sem descontos:</span>
+                        <span style="font-size: 12px;">{{ totalSem | formataTotal }}</span>
+                    </div>
+                    <div class="infos" v-if="totalCom > 1000">
+                        <span>10% de desconto:</span>
+                        <span style="font-size: 12px;">- {{Math.round(totalCom/10) | formataTotal }}</span>
+                    </div>
+                    <hr>
+                    <div class="infos">
+                        <strong style="font-size: 16px;">Valor final:</strong>
+                        <strong style="font-size: 16px;">{{ totalCom >= 1000 ? Math.round(totalCom-totalCom/10) : totalCom
                         | formataTotal }}</strong>
+                    </div>
                 </section>
                 
                 <v-btn style="border-radius: 15px; color: white; background: #008ad8;" 
@@ -59,7 +69,7 @@ export default {
     },
     filters: {
         formataTotal(valor){
-			return `R$ ${valor},00`
+            return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(valor)
 		},
     },
     methods: {
@@ -115,5 +125,12 @@ export default {
         border-radius: 15px !important;
         font-weight: bold !important;
         text-transform: none !important;
+    }
+    .infos {
+        display: flex; 
+        justify-content: space-between; 
+        width: 100%; 
+        flex-wrap: wrap;
+        margin: 5px 0;
     }
 </style>
