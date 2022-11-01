@@ -11,7 +11,8 @@ export default new Router({
     mode: 'history',
     routes: [
         { path: '/', component: Produtos },
-        { path: '/carrinho', component: Carrinho },
-        { path: '/:nome', component: Departamento, props: true },
+        { path: '/ECommerce-VueJs/', component: Produtos },
+        { path: '/ECommerce-VueJs/carrinho', component: Carrinho },
+        { path: '/ECommerce-VueJs/:nome', component: Departamento, props: true },
     ]
-})
+}) 

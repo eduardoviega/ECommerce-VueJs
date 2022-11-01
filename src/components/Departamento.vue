@@ -25,6 +25,7 @@ export default {
     methods: {
         async getUsers() {
             const response = await axios.get(`https://dummyjson.com/products/category/${this.nome}`)
+            response.data.products.map(p => p.amount = 1)
             this.dados = response.data.products
         }
     },

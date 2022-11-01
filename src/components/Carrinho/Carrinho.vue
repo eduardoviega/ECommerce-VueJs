@@ -41,7 +41,7 @@
                 <p><strong>Seu carrinho está vazio!</strong></p>
                 <p>Adicione algum produto para poder comprar!</p>
             </span>
-            <router-link to="/" style="text-decoration: none;">
+            <router-link to="/ECommerce-VueJs/" style="text-decoration: none;">
                 <v-btn class="btn-bluegreen px-4">Voltar à loja</v-btn>
             </router-link>
         </v-layout>
