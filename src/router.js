@@ -4,6 +4,7 @@ import Router from 'vue-router'
 import Produtos from './components/Produtos/Produtos.vue'
 import Departamento from './components/Departamento.vue'
 import Carrinho from './components/Carrinho/Carrinho.vue'
+import Carregamento from './components/Carregamento.vue'
 
 Vue.use(Router)
 
@@ -13,6 +14,7 @@ export default new Router({
         { path: '/', component: Produtos },
         { path: '/ECommerce-VueJs/', component: Produtos },
         { path: '/ECommerce-VueJs/carrinho', component: Carrinho },
+        { path: '/ECommerce-VueJs/carregamento', component: Carregamento },
         { path: '/ECommerce-VueJs/:nome', component: Departamento, props: true },
     ]
 }) 
