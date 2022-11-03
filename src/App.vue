@@ -1,12 +1,12 @@
 <template>
   <v-app>
     <Header></Header>
-    <v-content v-if="carregando" style="background-color: #202329;" id="content">
+    <Carregamento v-if="carregando" />
+    <v-content v-else style="background-color: #202329;" id="content">
       <v-container>
         <router-view/>
       </v-container>
     </v-content>
-    <Carregamento v-else />
   </v-app>
 </template>
 
@@ -18,13 +18,13 @@ export default {
   components: { Header, Carregamento },
   data() {
     return {
-      carregando: false
+      carregando: true
     }
-  },
+  },  
   mounted(){
     document.onreadystatechange = () => {
       if(document.readyState == "complete") {
-        this.carregando = true
+        this.carregando = false
       }
     }
   }
