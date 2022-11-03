@@ -1,5 +1,5 @@
 <template>
-    <v-card color="#fff" class="mx-2 my-3 px-2 py-2 d-flex" 
+    <v-card color="#fff" class="mx-2 my-3 px-2 py-2 d-flex item" 
         style="border-radius: 15px; height: auto; flex-wrap: wrap;">
         <v-img :src="produto.thumbnail" class="image"></v-img>
         

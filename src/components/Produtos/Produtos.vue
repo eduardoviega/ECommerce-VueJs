@@ -1,6 +1,6 @@
 <template>
     <v-layout row wrap class="d-flex" style="justify-content: space-evenly;">
-        <Produto v-for="dado in todosOsProdutos" :key="dado.id" :produto="dado" />
+        <Produto tag="div" class="prod" v-for="dado in todosOsProdutos" :key="dado.id" :produto="dado" />
     </v-layout>
 </template>
 
@@ -14,5 +14,10 @@ export default {
 </script>
 
 <style>
-
+    .geral {
+        transition: all .5s;
+    }
+    .geral:hover {
+        transform: scale(1.01);
+    }
 </style>

@@ -32,7 +32,7 @@
                 </section>
                 
                 <v-btn style="border-radius: 15px; color: white; background: #008ad8;" 
-                    class="botao text-capitalize" @click="limpar">Limpar Carrinho</v-btn>
+                    class="text-capitalize" @click="limpar">Limpar Carrinho</v-btn>
             </v-card> 
         </v-layout>
         
@@ -77,9 +77,10 @@ export default {
 </script>
 
 <style>
-* {
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-}
+    * {
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        transition: all .5s !important;
+    }
     .vazio {
         display: flex; 
         flex-direction: column;
@@ -103,5 +104,17 @@ export default {
         width: 100%; 
         flex-wrap: wrap;
         margin: 5px 0;
+    }
+    
+    i {
+        border-radius: 50%;
+        transition: all .5s;
+    }
+
+    i:hover, button:hover {
+        background: white !important;
+        color: #008ad8 !important;
+        border: 2px solid #008ad8 !important;
+        transform: scale(1.1);
     }
 </style>

@@ -61,7 +61,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
     * {
         font-family: Verdana, Geneva, Tahoma, sans-serif;
     }
@@ -77,5 +77,11 @@ export default {
         border-radius: 15px !important;
         font-weight: bold !important;
         text-transform: none !important;
+    }
+    button:hover {
+        background: white !important;
+        color: #008ad8 !important;
+        border: 2px solid #008ad8 !important;
+        transform: scale(1.1);
     }
 </style>
