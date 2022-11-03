@@ -1,8 +1,8 @@
 <template>
   <v-app>
     <Header></Header>
-    <Carregamento v-if="carregando" />
-    <v-content v-else style="background-color: #202329;" id="content">
+    <!-- <Carregamento v-if="carregando" /> -->
+    <v-content style="background-color: #202329;" id="content">
       <v-container>
         <router-view/>
       </v-container>
