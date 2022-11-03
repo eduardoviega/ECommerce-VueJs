@@ -36,6 +36,7 @@ export default {
             state.produtosCarrinho.splice(index, 1);
         },
         limparCarrinho(state){
+            state.produtosCarrinho.map(p => p.amount = 1)
             const tamanho = state.produtosCarrinho.length 
             for(let i=0; i<tamanho; i++){
                 state.produtosCarrinho.pop()

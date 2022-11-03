@@ -1,8 +1,7 @@
 <template>
   <v-app>
     <Header></Header>
-    <!-- <Carregamento v-if="carregando" /> -->
-    <v-content style="background-color: #202329;" id="content">
+    <v-content style="background-color: #202329;">
       <v-container>
         <router-view/>
       </v-container>
@@ -12,25 +11,14 @@
 
 <script>
 import Header from './components/Header.vue'
-import Carregamento from './components/Carregamento.vue'
 
 export default {
-  components: { Header, Carregamento },
-  data() {
-    return {
-      carregando: true
-    }
-  },  
-  mounted(){
-    document.onreadystatechange = () => {
-      if(document.readyState == "complete") {
-        this.carregando = false
-      }
-    }
-  }
+  components: { Header }
 }
 </script>
 
 <style>
-  
+  * {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+  }
 </style>

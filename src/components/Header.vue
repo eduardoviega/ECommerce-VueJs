@@ -1,5 +1,5 @@
 <template>
-    <v-toolbar app class="toolbar" style="background-color: #008ad8;">
+    <v-toolbar app class="toolbar">
         <div style="display: flex; flex-direction: row; align-items: center;">
             <v-toolbar-items class="mr-0">
                 <v-menu offset-x open-on-hover class="menu">
@@ -88,19 +88,19 @@
                 </v-menu>
             </v-toolbar-items>
             
-            <v-toolbar-title class="headline text-uppercase ml-3 mr-3 titulo">
+            <v-toolbar-title class="headline text-uppercase ml-3 mr-3">
                 <router-link to="/ECommerce-VueJs/" style="text-decoration: none; color: white;">
                     <span>Leigado</span>
                     <span class="font-weight-light">Store</span>
                 </router-link>
             </v-toolbar-title>
         </div>   
-        <v-spacer></v-spacer>
+        <v-spacer />
 
         <v-toolbar-items class="headline">
             <router-link to="/ECommerce-VueJs/carrinho" class="carrinho">
                 <Cart />
-                <span style="height: 100%; font-size: 16px;">{{ qtdProdutos }}</span>
+                <span style="height: 100%; font-size: medium; background: transparent;">{{ qtdProdutos }}</span>
             </router-link>
         </v-toolbar-items>
     </v-toolbar>
@@ -121,30 +121,23 @@ export default {
             setTimeout(()=>{
                 carrinho.style.transform = "none"
             }, 500)
-
         }
-    },
+    }
 }
 </script>
 
 <style>
-    * {
-        font-family: Verdana, Geneva, Tahoma, sans-serif;
-    }
     .departamentos * {
         background-color: white !important;
         text-decoration: none;
         color: black;
         width: 100%;
     }
-    .departamentos div:first-child {
-        border-radius: 20px;
-    }
     .departamentos div:first-child:hover {
-        transition: all .6s;
+        transition: all .5s;
         background-color: #008ad8 !important;
         color: white;
-        transform: scale(0.97);
+        transform: scale(1.03);
     }
     .departamentos {
         display: flex;
@@ -153,21 +146,21 @@ export default {
         padding: 0;
     }
     .carrinho {
-        color: white; 
+        color: white;
+        background: transparent !important;
         display: flex; 
         align-items: center; 
         padding-top: 5px; 
         text-decoration: none;
-        transition: all .5s;
     }
-    .carrinho:hover {
-        transform: scale(1.2) !important;
-    }
-    .menu {
-        transition: all .5s;
-        transform: scale(1.1);
+    .carrinho:hover, .menu {
+        transform: scale(1.2);
     }
     .menu:hover {
-        transform: scale(1.4);
+        transform: scale(1.5);
+    }
+    .toolbar * {
+        transition: all .5s;
+        background-color: #008ad8;
     }
 </style>

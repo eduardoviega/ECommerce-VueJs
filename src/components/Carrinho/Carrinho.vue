@@ -1,21 +1,21 @@
 <template>
-    <v-layout class="d-flex justify-content-center" 
+    <v-layout class="d-flex justify-content-center cart" 
         style="background-color: #008ad800; border-radius: 15px;">
         
         <v-layout class="comItem" v-if="produtosCarrinho.length != 0" style="display: flex; flex-wrap: wrap-reverse;">
-            <div column style="flex: 9;">
+            <template column style="flex: 9;">
                 <ItemCarrinho v-for="item in produtosCarrinho" :key="item.id" :produto="item" />
-            </div>
+            </template>
 
             <v-card style="display: flex; flex-direction: column; align-self: flex-end; flex: 4; 
                 min-height: 190px; padding: 20px;  justify-content: space-between; border-radius: 15px; 
                 background-color: #fff;" class="mx-2 my-3">
                 
-                <div class="infos">
+                <template class="infos">
                     <h3>Total do pedido:</h3>
-                </div>
+                </template>
                 <hr>
-                <section style="display: flex; flex-direction: column;">
+                <template style="display: flex; flex-direction: column;">
                     <div class="infos">
                         <span>Valor sem descontos:</span>
                         <span style="font-size: 12px;">{{ valorSemDescontos | formataTotal }}</span>
@@ -29,7 +29,7 @@
                         <strong style="font-size: 16px;">Valor final:</strong>
                         <strong style="font-size: 16px;">{{ valorFinal >= 1000 ? valorFinal - dezPorCento : valorFinal | formataTotal }}</strong>
                     </div>
-                </section>
+                </template>
                 
                 <v-btn style="border-radius: 15px; color: white; background: #008ad8;" 
                     class="text-capitalize" @click="limpar">Limpar Carrinho</v-btn>
@@ -37,12 +37,12 @@
         </v-layout>
         
         <v-layout class="vazio" v-else>
-            <span>
+            <template>
                 <p><strong>Seu carrinho está vazio!</strong></p>
                 <p>Adicione algum produto para poder comprar!</p>
-            </span>
+            </template>
             <router-link to="/ECommerce-VueJs/" style="text-decoration: none;">
-                <v-btn class="btn-bluegreen px-4">Voltar à loja</v-btn>
+                <v-btn class="btn-blue px-4">Voltar à loja</v-btn>
             </router-link>
         </v-layout>
     </v-layout>
@@ -71,27 +71,18 @@ export default {
 }
 </script>
 
-<style>
-    * {
-        font-family: Verdana, Geneva, Tahoma, sans-serif;
+<style scoped>
+    .cart * {
         transition: all .5s !important;
     }
     .vazio {
         display: flex; 
         flex-direction: column;
-        justify-content: center; 
         align-items: center;
         text-align: center;
         background: white;
         padding: 30px 20px;
         border-radius: 10px;
-    }
-    .btn-bluegreen {
-        background: #008ad8 !important;
-        color: white !important;
-        border-radius: 15px !important;
-        font-weight: bold !important;
-        text-transform: none !important;
     }
     .infos {
         display: flex; 
@@ -99,17 +90,5 @@ export default {
         width: 100%; 
         flex-wrap: wrap;
         margin: 5px 0;
-    }
-    
-    i {
-        border-radius: 50%;
-        transition: all .5s;
-    }
-
-    i:hover, button:hover {
-        background: white !important;
-        color: #008ad8 !important;
-        border: 2px solid #008ad8 !important;
-        transform: scale(1.1);
     }
 </style>

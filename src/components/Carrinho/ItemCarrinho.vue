@@ -1,31 +1,29 @@
 <template>
     <v-card color="#fff" class="mx-2 my-3 px-2 py-2 d-flex item" 
         style="border-radius: 15px; height: auto; flex-wrap: wrap;">
-        <v-img :src="produto.thumbnail" class="image"></v-img>
+        <v-img :src="produto.thumbnail" class="image" />
         
         <div class="px-4 py-2">
-            <div class="text">
+            <template class="text pl-0">
                 <div style="font-size: large;"><strong>{{ produto.title }}</strong></div>
-            </div>
+            </template>
             
             <div style="display: flex; flex-direction: column; margin: 5px 0 15px;">
                 <strike style="font-size: small;">{{ withoutDiscount | formataPreco }}</strike>
                 <strong style="font-size: medium;">{{ produto.price | formataPreco }}</strong>
             </div>
 
-            <div>
+            <template>
                 <v-text-field label="Quantidade:"
-                    v-model="produto.amount" @keydown.prevent
-                    hide-details
-                    append-outer-icon="add" prepend-icon="remove" 
+                    v-model="produto.amount" @keypress.prevent @keydown.prevent
+                    hide-details append-outer-icon="add" prepend-icon="remove" 
                     @click:append-outer="increment" @click:prepend="decrement"
-                    style="width: auto;"
                 ></v-text-field>
-            </div>
+            </template>
 
-            <v-card-actions class="mt-2">
-                <v-btn class="btn-blue" @click="remover">Remover</v-btn>
-            </v-card-actions> 
+            <template>
+                <v-btn class="btn-blue mt-2" @click="remover">Remover</v-btn>
+            </template> 
         </div>
     </v-card>
 </template>
@@ -60,21 +58,21 @@ export default {
 </script>
 
 <style>
-    * {
-        font-family: Verdana, Geneva, Tahoma, sans-serif;
-    }
     .image{
         align-self: flex-start;
         min-width: 25vh; 
         min-height: 15vh; 
         max-height: 25vh; 
-        border-radius: 10px; 
+        border-radius: 10px;
     }
-    .btn-blue {
-        background: #008ad8 !important;
-        color: white !important;
-        border-radius: 15px !important;
-        font-weight: bold !important;
-        text-transform: none !important;
+    
+    i {
+        border-radius: 50%;
+        width: auto;
+    }
+    i:hover {
+        color: #008ad8 !important;
+        border: 2px solid #008ad8 !important;
+        transform: scale(1.1);
     }
 </style>

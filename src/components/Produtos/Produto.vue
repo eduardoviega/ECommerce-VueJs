@@ -18,16 +18,14 @@
 
         <div class="text" style="display: flex; flex-direction: column;">
             <div style="display: flex; float: left; align-items: center; padding-bottom: 5px;">
-                <v-rating :value="produto.rating" color="amber" dense half-increments readonly size="18"></v-rating>
+                <v-rating :value="produto.rating" color="amber" dense half-increments readonly size="19"></v-rating>
                 <div class="grey--text" style="font-size: small;">({{ produto.rating }})</div>
             </div>
-            <strike style="font-size: 12px;">{{ withoutDiscount | formataPreco }}</strike>
-            <strong style="font-size: 16px;">{{ produto.price | formataPreco }}</strong>
+            <strike style="font-size: small;">{{ withoutDiscount | formataPreco }}</strike>
+            <strong style="font-size: medium;">{{ produto.price | formataPreco }}</strong>
         </div>
         
-        <div class="text">
-            <div>{{ produto.description }}</div>
-        </div>
+        <div class="text">{{ produto.description }}</div>
 
         <v-card-actions class="justify-center my-2">
             <v-btn class="btn-blue px-4" @click="comprar">Comprar</v-btn>
@@ -62,12 +60,6 @@ export default {
 </script>
 
 <style>
-    * {
-        font-family: Verdana, Geneva, Tahoma, sans-serif;
-    }
-    .geral {
-        gap: 10px;
-    }
     .text {
         padding: 0 15px;
     }
@@ -78,6 +70,7 @@ export default {
         font-weight: bold !important;
         text-transform: none !important;
     }
+    
     button:hover {
         background: white !important;
         color: #008ad8 !important;
