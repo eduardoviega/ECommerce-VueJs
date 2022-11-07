@@ -1,7 +1,7 @@
 <template>
     <v-layout row wrap class="d-flex" style="justify-content: space-evenly;">
         <Produto v-for="dado in dados" :key="dado.id" :produto="dado" />
-    </v-layout>
+    </v-layout>    
 </template>
 
 <script>

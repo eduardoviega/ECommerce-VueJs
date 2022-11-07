@@ -3,9 +3,9 @@
         style="background-color: #008ad800; border-radius: 15px;">
         
         <v-layout class="comItem" v-if="produtosCarrinho.length != 0" style="display: flex; flex-wrap: wrap-reverse;">
-            <template column style="flex: 9;">
+            <div column style="flex: 9;">
                 <ItemCarrinho v-for="item in produtosCarrinho" :key="item.id" :produto="item" />
-            </template>
+            </div>
 
             <v-card style="display: flex; flex-direction: column; align-self: flex-end; flex: 4; 
                 min-height: 190px; padding: 20px;  justify-content: space-between; border-radius: 15px; 
@@ -13,12 +13,12 @@
                 
                 <template class="infos">
                     <h3>Total do pedido:</h3>
-                </template>
+                </template> 
                 <hr>
                 <template style="display: flex; flex-direction: column;">
                     <div class="infos">
                         <span>Valor sem descontos:</span>
-                        <span style="font-size: 12px;">{{ valorSemDescontos | formataTotal }}</span>
+                        <span style="font-size: 12px;">{{ valorFinal | formataTotal }}</span>
                     </div>
                     <div class="infos" v-if="valorFinal >= 1000">
                         <span>10% de desconto:</span>
