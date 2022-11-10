@@ -34,5 +34,10 @@ export default {
 </script>
 
 <style>
-
+    .geral {
+        transition: all .5s;
+    }
+    .geral:hover {
+        transform: scale(1.01);
+    }
 </style>

@@ -3,9 +3,14 @@
         style="background-color: #008ad800; border-radius: 15px;">
         
         <v-layout class="comItem" v-if="produtosCarrinho.length != 0" style="display: flex; flex-wrap: wrap-reverse;">
-            <div column style="flex: 9;">
-                <ItemCarrinho v-for="item in produtosCarrinho" :key="item.id" :produto="item" />
-            </div>
+            <transition-group name="slide" mode="out-in"
+                column style="flex: 9;" class="itens">
+                <b-list-group v-for="item in produtosCarrinho" :key="item.id">
+                    <b-list-group-item>
+                        <ItemCarrinho :produto="item" />
+                    </b-list-group-item>
+                </b-list-group>
+            </transition-group>
 
             <v-card style="display: flex; flex-direction: column; align-self: flex-end; flex: 4; 
                 min-height: 190px; padding: 20px;  justify-content: space-between; border-radius: 15px; 
@@ -72,8 +77,8 @@ export default {
 </script>
 
 <style scoped>
-    .cart * {
-        transition: all .5s !important;
+    .cart *, .itens * {
+        transition: all .4s !important;
     }
     .vazio {
         display: flex; 
@@ -90,5 +95,22 @@ export default {
         width: 100%; 
         flex-wrap: wrap;
         margin: 5px 0;
+    }
+    @keyframes slide-in {
+        from { transform: translateY(-30px); opacity: 0; }
+        to { transform: translateY(0px); opacity: 1; }
+    }
+    @keyframes slide-out {
+        from { transform: translateY(0px); opacity: 1; }
+        to { transform: translateY(-30px); opacity: 0; }
+    }
+    .slide-enter-active {
+        animation: slide-in 0.4s ease;
+    }
+    .slide-leave-active {
+        animation: slide-out 0.4s ease;
+    }
+    .slide-move {
+        animation: all 1s;
     }
 </style>

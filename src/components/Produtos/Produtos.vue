@@ -16,7 +16,6 @@ export default {
 <style scoped>
     .geral {
         transition: all .5s;
-        gap: 10px;
     }
     .geral:hover {
         transform: scale(1.01);

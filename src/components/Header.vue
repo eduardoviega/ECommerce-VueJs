@@ -97,7 +97,7 @@
         </div>   
         <v-spacer />
 
-        <v-toolbar-items class="headline">
+        <v-toolbar-items class="headline" style="background-color: transparent;">
             <router-link to="/ECommerce-VueJs/carrinho" class="carrinho">
                 <Cart />
                 <span style="height: 100%; font-size: medium; background: transparent;">{{ qtdProdutos }}</span>
