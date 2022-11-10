@@ -1,6 +1,6 @@
 <template>
     <v-card class="mx-2 my-3 geral" width="340px" max-width="340px" style="border-radius: 15px; display: flex; 
-        flex-direction: column; justify-content: space-between;">
+        flex-direction: column; justify-content: space-between; gap: 10px;">
 
         <v-carousel :cycle="false" hide-delimiters v-model="model"
             v-if="produto.images.length != 1" 
@@ -27,8 +27,13 @@
         
         <div class="text">{{ produto.description }}</div>
 
-        <v-card-actions class="justify-center my-2">
-            <v-btn class="btn-blue px-4" @click="comprar">Comprar</v-btn>
+        <v-card-actions class="justify-center my-2" style="">
+            <v-btn class="btn-blue mr-3" @click="comprar" style="display: flex;font-size: small;">
+                Adicionar ao carrinho
+            </v-btn>
+            <router-link to="/ECommerce-VueJs/carrinho" style="text-decoration: none; color: white;">
+                <v-btn class="btn-blue" @click="comprar" style="font-size: small;">Comprar</v-btn>
+            </router-link>
         </v-card-actions>
     </v-card>
 </template>
