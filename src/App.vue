@@ -4,6 +4,7 @@
     <Carregamento v-if="carregando" />
     <v-content v-else style="background-color: #202329;">
       <v-container style="display: flex; justify-content: center;">
+        <Snackbar />
         <transition name="slide" mode="out-in">
           <router-view/>
         </transition>
@@ -15,9 +16,10 @@
 <script>
 import Header from './components/Header.vue'
 import Carregamento from './components/Carregamento.vue'
+import Snackbar from './components/Snackbar.vue'
 
 export default {
-  components: { Header, Carregamento },
+  components: { Header, Carregamento, Snackbar },
   data() {
     return {
       carregando: true,

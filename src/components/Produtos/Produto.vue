@@ -59,7 +59,7 @@ export default {
     methods: {
         comprar(){
             this.$store.commit('adicionarCarrinho', this.produto)
-        }
+        },
     }
 }
 </script>

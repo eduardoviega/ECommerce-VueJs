@@ -3,14 +3,14 @@
         style="background-color: #008ad800; border-radius: 15px;">
         
         <v-layout class="comItem" v-if="produtosCarrinho.length != 0" style="display: flex; flex-wrap: wrap-reverse;">
-            <transition-group name="slide" mode="out-in"
-                column style="flex: 9;" class="itens">
-                <b-list-group v-for="item in produtosCarrinho" :key="item.id">
-                    <b-list-group-item>
+            <ul style="margin: 0; padding: 0; flex: 9;" class="itens">
+                <transition-group name="slide" mode="out-in" column>
+                    <li v-for="item in produtosCarrinho" :key="item.id" 
+                        style="list-style: none; margin: 0; padding: 0;">
                         <ItemCarrinho :produto="item" />
-                    </b-list-group-item>
-                </b-list-group>
-            </transition-group>
+                    </li>
+                </transition-group>
+            </ul>
 
             <v-card style="display: flex; flex-direction: column; align-self: flex-end; flex: 4; 
                 min-height: 190px; padding: 20px;  justify-content: space-between; border-radius: 15px; 

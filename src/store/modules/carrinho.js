@@ -1,3 +1,4 @@
+import barramento from '../../barramento'
 export default {
     state: {
         produtosCarrinho: [],
@@ -25,9 +26,14 @@ export default {
             if(state.produtosCarrinho.find(item => item.id == payload.id)){
                 if(state.produtosCarrinho.filter(item => item.id == payload.id)[0].amount < 10){
                     state.produtosCarrinho.filter(item => item.id == payload.id)[0].amount += 1
+                    barramento.$emit('mensagem', true)
+                }
+                else {
+                    barramento.$emit('mensagem', false)
                 }
             } else {
                 state.produtosCarrinho.push(payload)
+                barramento.$emit('mensagem', true)
             }
         },
         removerDoCarrinho(state, payload){
